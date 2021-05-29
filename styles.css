@@ -28,5 +28,8 @@ main {
 }
 
 .picture {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     margin: 12px
 }
