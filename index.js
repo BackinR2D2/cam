@@ -31,16 +31,16 @@ navigator.getMedia({video: true}, function() {
   timeBtn.setAttribute('class', 'btn btn-info');
   vbtn.setAttribute('type', 'checkbox');
   vbtn.setAttribute('id', 'vbtn');
-  btn.textContent = 'snap picture';
-  timeBtn.textContent = 'snap picture after 3 seconds';
+  btn.textContent = 'Snap picture';
+  timeBtn.textContent = 'Snap picture after 3 seconds';
   btnSection.append(btn);
   btnSection.append(timeBtn);
   btnSection.append(vbtn);
   Webcam.set({
-    width: 600,
-    height: 480,
+    width: 340,
+    height: 280,
     image_format: 'jpeg',
-    jpeg_quality: 100
+    jpeg_quality: 90
   });
 Webcam.attach( '#video' );
 
