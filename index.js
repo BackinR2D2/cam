@@ -1,5 +1,6 @@
 const btnSection = document.querySelector('.btnSection');
 const video = document.querySelector('#video');
+const timer = document.querySelector('.timer');
 navigator.getMedia = ( navigator.getUserMedia || // use the proper vendor prefix
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia ||
@@ -11,6 +12,8 @@ const createPhoto = () => {
     const a = document.createElement('a');
     const container = document.getElementById('results')
     img.src = data_uri;
+    img.setAttribute('class', 'picture');
+    img.setAttribute('title', 'download picture');
     a.download = 'image.png';
     a.href = data_uri;
     a.append(img)
@@ -35,10 +38,10 @@ navigator.getMedia({video: true}, function() {
     width: 400,
     height: 320,
     image_format: 'jpeg',
-    jpeg_quality: 90
+    jpeg_quality: 100
   });
 Webcam.attach( '#video' );
-const v = document.querySelector('video');
+
 document.getElementById("snap").addEventListener("click",function() {
 	createPhoto();
 });
@@ -48,18 +51,27 @@ document.getElementById("vbtn").addEventListener("change", function(e) {
     Webcam.reset();
     btn.style.display = 'none';
     timeBtn.style.display = 'none';
+    timer.style.display = 'none';
   } else {
     Webcam.attach( '#video' );
     btn.style.display = 'initial';
     timeBtn.style.display = 'initial';
+    timer.style.display = 'initial';
   }
 })
 
 document.getElementById("time").addEventListener("click",function() {
-	setTimeout(() => {
-    createPhoto();
-  }, 3000);
+  let s = 3;
+  const time = setInterval(()=>{
+    timer.textContent = s-1;
+    s-=1;
+    if(s<=0){
+      createPhoto();
+      timer.textContent=3;
+      clearInterval(time)
+    }
+  }, 1000);
 });
-}, function(error) {
+}, function() {
   alert('Camera access must be allowed.');
 });
