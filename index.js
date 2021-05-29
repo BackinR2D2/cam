@@ -26,7 +26,9 @@ navigator.getMedia({video: true}, function() {
   const timeBtn = document.createElement('button');
   const vbtn = document.createElement('input');
   btn.setAttribute('id', 'snap');
+  btn.setAttribute('class', 'btn btn-primary');
   timeBtn.setAttribute('id', 'time');
+  timeBtn.setAttribute('class', 'btn btn-info');
   vbtn.setAttribute('type', 'checkbox');
   vbtn.setAttribute('id', 'vbtn');
   btn.textContent = 'snap picture';
@@ -56,15 +58,16 @@ document.getElementById("vbtn").addEventListener("change", function(e) {
     Webcam.attach( '#video' );
     btn.style.display = 'initial';
     timeBtn.style.display = 'initial';
-    timer.style.display = 'initial';
+    timer.style.display = 'block';
   }
 })
 
 document.getElementById("time").addEventListener("click",function() {
   let s = 3;
+  timer.textContent = s;
   const time = setInterval(()=>{
-    timer.textContent = s-1;
     s-=1;
+    timer.textContent = s;
     if(s<=0){
       createPhoto();
       timer.textContent=3;

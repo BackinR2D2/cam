@@ -3,3 +3,30 @@
     max-width: 320px;
     height: auto;
 }
+
+main {
+    text-align: center;
+}
+
+#video {
+    margin: 0 auto;
+}
+
+.btnSection {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+    padding: 24px;
+}
+
+.timer {
+    font-size: 30px;
+}
+
+#results {
+    padding: 24px;
+}
+
+.picture {
+    margin: 12px
+}
