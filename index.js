@@ -37,8 +37,8 @@ navigator.getMedia({video: true}, function() {
   btnSection.append(timeBtn);
   btnSection.append(vbtn);
   Webcam.set({
-    width: 340,
-    height: 300,
+    width: 400,
+    height: 320,
     image_format: 'jpeg',
     jpeg_quality: 90
   });
