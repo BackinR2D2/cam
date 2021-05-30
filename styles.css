@@ -12,6 +12,11 @@ main {
     margin: 0 auto;
 }
 
+video {
+    width: 60% !important;
+    height: 100% !important;
+}
+
 .btnSection {
     display: grid;
     grid-auto-flow: column;
