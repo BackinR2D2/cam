@@ -22,8 +22,8 @@ const createPhoto = () => {
 }
 
 const attachWebcam = () => {
-  const width = 320;
-  const height = 240;
+  let width = 320;
+  let height = 240;
 
   if(screen.width < screen.height) {
     width = 240;
@@ -44,11 +44,7 @@ const attachWebcam = () => {
 
 
 navigator.getMedia({video: true}, function() {
-    try {
-      attachWebcam();
-    } catch (error) {
-      alert(error);
-    }
+    attachWebcam();
     const btn = document.createElement('button');
     const timeBtn = document.createElement('button');
     const vbtn = document.createElement('input');
