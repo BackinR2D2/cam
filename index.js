@@ -44,21 +44,25 @@ const attachWebcam = () => {
 
 
 navigator.getMedia({video: true}, function() {
-  attachWebcam();
-  const btn = document.createElement('button');
-  const timeBtn = document.createElement('button');
-  const vbtn = document.createElement('input');
-  btn.setAttribute('id', 'snap');
-  btn.setAttribute('class', 'btn btn-primary');
-  timeBtn.setAttribute('id', 'time');
-  timeBtn.setAttribute('class', 'btn btn-info');
-  vbtn.setAttribute('type', 'checkbox');
-  vbtn.setAttribute('id', 'vbtn');
-  btn.textContent = 'Snap picture';
-  timeBtn.textContent = 'Snap picture after 3 seconds';
-  btnSection.append(btn);
-  btnSection.append(timeBtn);
-  btnSection.append(vbtn);
+    try {
+      attachWebcam();
+    } catch (error) {
+      alert(error);
+    }
+    const btn = document.createElement('button');
+    const timeBtn = document.createElement('button');
+    const vbtn = document.createElement('input');
+    btn.setAttribute('id', 'snap');
+    btn.setAttribute('class', 'btn btn-primary');
+    timeBtn.setAttribute('id', 'time');
+    timeBtn.setAttribute('class', 'btn btn-info');
+    vbtn.setAttribute('type', 'checkbox');
+    vbtn.setAttribute('id', 'vbtn');
+    btn.textContent = 'Snap picture';
+    timeBtn.textContent = 'Snap picture after 3 seconds';
+    btnSection.append(btn);
+    btnSection.append(timeBtn);
+    btnSection.append(vbtn);
 
   document.getElementById("snap").addEventListener("click",function() {
     createPhoto();
