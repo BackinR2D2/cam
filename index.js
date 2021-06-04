@@ -21,6 +21,7 @@ const createPhoto = () => {
   });
 }
 
+
 navigator.getMedia({video: true}, function() {
   const btn = document.createElement('button');
   const timeBtn = document.createElement('button');
@@ -36,45 +37,66 @@ navigator.getMedia({video: true}, function() {
   btnSection.append(btn);
   btnSection.append(timeBtn);
   btnSection.append(vbtn);
-  Webcam.set({
-    width: 400,
-    height: 340,
-    image_format: 'jpeg',
-    jpeg_quality: 90
-  });
-Webcam.attach( '#video' );
 
-document.getElementById("snap").addEventListener("click",function() {
-	createPhoto();
-});
+  const attachWebcam = () => {
+    const width = 320;
+    const height = 240;
 
-document.getElementById("vbtn").addEventListener("change", function(e) {
-  if(e.currentTarget.checked){
-    Webcam.reset();
-    btn.style.display = 'none';
-    timeBtn.style.display = 'none';
-    timer.style.display = 'none';
-  } else {
-    Webcam.attach( '#video' );
-    btn.style.display = 'initial';
-    timeBtn.style.display = 'initial';
-    timer.style.display = 'block';
-  }
-})
-
-document.getElementById("time").addEventListener("click",function() {
-  let s = 3;
-  timer.textContent = s;
-  const time = setInterval(()=>{
-    s-=1;
-    timer.textContent = s;
-    if(s<=0){
-      createPhoto();
-      timer.textContent=3;
-      clearInterval(time)
+    if(screen.width < screen.height) {
+      width = 240;
+      height = 320;
     }
-  }, 1000);
-});
-}, function() {
-  alert('Camera access must be allowed.');
+
+    Webcam.set({
+      width: width,
+      height: height,
+      dest_width: width,
+      dest_height: height,
+      crop_width: width,
+      crop_height: height
+    });
+
+    Webcam.attach('#video');
+  };
+
+  window.addEventListener('orientationchange', function() {
+    Webcam.reset();
+    attachWebcam();
+  });
+
+  attachWebcam();
+
+  document.getElementById("snap").addEventListener("click",function() {
+    createPhoto();
+  });
+
+  document.getElementById("vbtn").addEventListener("change", function(e) {
+    if(e.currentTarget.checked){
+      Webcam.reset();
+      btn.style.display = 'none';
+      timeBtn.style.display = 'none';
+      timer.style.display = 'none';
+    } else {
+      Webcam.attach( '#video' );
+      btn.style.display = 'initial';
+      timeBtn.style.display = 'initial';
+      timer.style.display = 'block';
+    }
+  })
+
+  document.getElementById("time").addEventListener("click",function() {
+    let s = 3;
+    timer.textContent = s;
+    const time = setInterval(()=>{
+      s-=1;
+      timer.textContent = s;
+      if(s<=0){
+        createPhoto();
+        timer.textContent=3;
+        clearInterval(time)
+      }
+    }, 1000);
+  });
+  }, function() {
+    alert('Camera access must be allowed.');
 });
