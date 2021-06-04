@@ -36,7 +36,8 @@ const attachWebcam = () => {
     dest_width: width,
     dest_height: height,
     crop_width: width,
-    crop_height: height
+    crop_height: height,
+    jpeg_quality: 90,
   });
 
   Webcam.attach('#video');
