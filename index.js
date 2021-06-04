@@ -21,8 +21,30 @@ const createPhoto = () => {
   });
 }
 
+const attachWebcam = () => {
+  const width = 320;
+  const height = 240;
+
+  if(screen.width < screen.height) {
+    width = 240;
+    height = 320;
+  }
+
+  Webcam.set({
+    width: width,
+    height: height,
+    dest_width: width,
+    dest_height: height,
+    crop_width: width,
+    crop_height: height
+  });
+
+  Webcam.attach('#video');
+};
+
 
 navigator.getMedia({video: true}, function() {
+  attachWebcam();
   const btn = document.createElement('button');
   const timeBtn = document.createElement('button');
   const vbtn = document.createElement('input');
@@ -37,29 +59,6 @@ navigator.getMedia({video: true}, function() {
   btnSection.append(btn);
   btnSection.append(timeBtn);
   btnSection.append(vbtn);
-
-  const attachWebcam = () => {
-    const width = 320;
-    const height = 240;
-
-    if(screen.width < screen.height) {
-      width = 240;
-      height = 320;
-    }
-
-    Webcam.set({
-      width: width,
-      height: height,
-      dest_width: width,
-      dest_height: height,
-      crop_width: width,
-      crop_height: height
-    });
-
-    Webcam.attach('#video');
-  };
-
-  attachWebcam();
 
   document.getElementById("snap").addEventListener("click",function() {
     createPhoto();
