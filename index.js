@@ -59,11 +59,6 @@ navigator.getMedia({video: true}, function() {
     Webcam.attach('#video');
   };
 
-  window.addEventListener('orientationchange', function() {
-    Webcam.reset();
-    attachWebcam();
-  });
-
   attachWebcam();
 
   document.getElementById("snap").addEventListener("click",function() {
